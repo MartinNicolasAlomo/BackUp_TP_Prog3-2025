@@ -18,10 +18,10 @@ const deleteProduct = async (id) => {
 
 }
 
-const insertarProducto = async(codigo,nombre,precio,img,categorias,activo) => {
-    let cadSql = "insert into productos (codigo,nombre,precio,img,categoria,activo) value (?,?,?,?,?,?)";
+const insertarProducto = async(id,nombre,precio,imagen,categorias,activo) => {
+    let cadSql = "insert into productos (id,nombre,precio,imagen,categoria,activo) value (?,?,?,?,?,?)";
 
-    return await connection.query(cadSql,[codigo,nombre,precio,img,categorias,activo]);
+    return await connection.query(cadSql,[id,nombre,precio,imagen,categorias,activo]);
 }
 
 const actualizarProducto = async(nombre,precio,img,categorias,activo,id) =>{

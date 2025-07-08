@@ -6,7 +6,7 @@
         <hr>
 
         
-        <section class="seccion-productos">
+        <section class="seccion-productos-alta">
             <div class="formulario-alta-header">
                 <h3>Alta de producto</h3>
                 <span>Completa los siguientes datos:</span>
@@ -29,8 +29,11 @@
                     <input type="text" name="img" id="img">
                 </div>
                 <div class="form-alta-campo">
-                    <label for="categorias">Categoría:</label>
-                    <input type="text" name="categorias" id="categorias">
+                    <select name="categorias" id="categorias" required>
+                        <option value="">-- Seleccionar --</option>
+                        <option value="Película">Pelicula</option>
+                        <option value="Serie">Serie</option>
+                    </select>
                 </div>
                 <div class="form-alta-campo">
                     <label for="activo">Activo:</label>
@@ -47,5 +50,5 @@
             </div>
         </section>
 
-
+<script defer="" src="/js/agregar.js"></script>
 <%- include("partials/footer.ejs") %>

@@ -83,7 +83,7 @@ export const removeProduct = async (req, res) => {
 }
 
 
-export const PostProducto=(req, res) => {
+export const postProducto=(req, res) => {
     console.log("POST /altaProducto Body:", req.body);
     let {codigo,nombre,precio,img,categorias,activo} = req.body;
     Products.insertarProducto(codigo,nombre,precio,img,categorias,activo);
@@ -102,9 +102,9 @@ export const PostProducto=(req, res) => {
 
 export const putProducto = async(req,res)=>{
     console.log("PUT - Body",req.body);
-    const { nombre, precio, img, categorias, activo,codigo } = req.body;
+    const { nombre, precio, img, categoria, activo,codigo } = req.body;
     try {
-        await Products.actualizarProducto(nombre,precio,img,categorias,activo,codigo);
+        await Products.actualizarProducto(nombre,precio,img,categoria,activo,codigo);
          res.status(200).json({
                 success: true,
                 message : "Producto actualizado"
