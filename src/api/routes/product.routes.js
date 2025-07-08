@@ -38,7 +38,7 @@ feineestrucuta de rdaots y como intectua con DB
 router.delete("/:id", validateID, removeProduct);
 
 
-router.post("/altaProducto",PostProducto);
+router.post("/",PostProducto);
 
 
 router.put("/",putProducto);

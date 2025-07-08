@@ -19,14 +19,14 @@ const deleteProduct = async (id) => {
 }
 
 const insertarProducto = async(codigo,nombre,precio,img,categorias,activo) => {
-    let cadSql = "insert into producto (codigo,nombre,precio,img,categoria,activo) value (?,?,?,?,?,?)";
+    let cadSql = "insert into productos (codigo,nombre,precio,img,categoria,activo) value (?,?,?,?,?,?)";
 
-    return await conn.query(cadSql,[codigo,nombre,precio,img,categorias,activo]);
+    return await connection.query(cadSql,[codigo,nombre,precio,img,categorias,activo]);
 }
 
-const actualizarProducto = async(nombre,precio,img,categorias,activo,codigo) =>{
-    let cadSql = "update producto set nombre = ?,precio = ?,img =? ,categoria = ? ,activo = ? where codigo = ?";
-    return await conn.query(cadSql,[nombre,precio,img,categorias,activo,codigo]);
+const actualizarProducto = async(nombre,precio,img,categorias,activo,id) =>{
+    let cadSql = "update productos set nombre = ?,precio = ?,imagen =? ,categoria = ? ,activo = ? where id = ?";
+    return await connection.query(cadSql,[nombre,precio,img,categorias,activo,id]);
 }
 export default {
     selectAllProducts,
