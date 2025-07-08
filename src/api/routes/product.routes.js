@@ -1,6 +1,6 @@
 import { Router } from "express";
 import { validateID } from "../middlewares/middlewares.js";
-import { removeProduct, getAllProducts, getProductByID } from "../controllers/product.controllers.js";
+import { removeProduct, getAllProducts, getProductByID, PostProducto, putProducto } from "../controllers/product.controllers.js";
 
 
 const router = Router();
@@ -38,5 +38,9 @@ feineestrucuta de rdaots y como intectua con DB
 router.delete("/:id", validateID, removeProduct);
 
 
+router.post("/altaProducto",PostProducto);
+
+
+router.put("/",putProducto);
 
 export default router;

@@ -77,3 +77,39 @@ export const removeProduct = async (req, res) => {
         });
     }
 }
+
+
+export const PostProducto=(req, res) => {
+    console.log("POST /altaProducto Body:", req.body);
+    let {codigo,nombre,precio,img,categorias,activo} = req.body;
+    myslqService.insertarProducto(codigo,nombre,precio,img,categorias,activo);
+    try {
+        res.status(201).json({
+            success: true,
+            message : "Producto agregado correctamente"
+        });
+    } catch (error) {
+        console.error("Error creando producto", error);
+        res.status(500).json({
+            message: "Error al crear producto"
+        });
+    }
+}
+
+export const putProducto = async(req,res)=>{
+    console.log("PUT - Body",req.body);
+    const { nombre, precio, img, categorias, activo,codigo } = req.body;
+    try {
+        await myslqService.actualizarProducto(nombre,precio,img,categorias,activo,codigo);
+         res.status(200).json({
+                success: true,
+                message : "Producto actualizado"
+            })
+    } catch (error) {
+        console.error("errr",error);
+        res.status(500).json({
+            success: false,
+            message : "Error actualizando producto"
+        })
+    }
+}
