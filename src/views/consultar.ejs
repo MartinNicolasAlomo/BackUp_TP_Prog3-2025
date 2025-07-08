@@ -6,43 +6,46 @@
             <h1>
                 <%= title %>
             </h1>
-
             <hr>
 
-            <section id="contenedor-get">
-                <p>
-                    <%= about %>
-                </p>
+            <section>
+                <div class="header-formulario">
+                    <h3>Busqueda de producto</h3>
+                    <h2>Consultar un Producto por ID:</h2>
+                </div>
 
-                <form id="formulario-obtener-producto">
-                    <label for="idProd">Id producto</label>
+                <form class="formulario-obtener-producto">
+                    <label for="idProd">ID Producto:</label>
                     <input type="number" name="idProd" id="idProd" required>
-                    <input type="submit" value="Consultar producto">
+                    <input type="submit" value="Consultar Producto">
                 </form>
             </section>
 
             <section>
-                <div id="contenedor-objeto-encontrado">
-                    <ul id="producto-encontrado">
-                    </ul>
+                <div class="contenedor-objeto-encontrado">
                 </div>
             </section>
         </main>
 
 
-        <!-- Por tema legibilidad, incorporamos aca el JavaScript -->
+        <!--   <script defer src="js/consultar.js"></script>
+
+          text-align: center;
+
+
+
+        Por tema legibilidad, incorporamos aca el JavaScript -->
         <script>
 
             const urlProducts = "http://localhost:3000/api/";
-            let formularioObtenerProducto = document.getElementById("formulario-obtener-producto");
-            let productoEncontrado = document.getElementById("producto-encontrado");
+            let formularioObtenerProducto = document.querySelector(".formulario-obtener-producto");
+            let contenedorObjetoEncontrado = document.querySelector(".contenedor-objeto-encontrado");
 
             formularioObtenerProducto.addEventListener("submit", async (event) => {
                 event.preventDefault();
 
                 try {
-                    productoEncontrado.innerHTML = "<p>Cargando producto...</p>"        //  Muestra estado de carga
-
+                    contenedorObjetoEncontrado.innerHTML = "<p>Cargando producto...</p>"    //  Muestra estado de carga
                     console.log("carga");
 
 
@@ -80,8 +83,9 @@
 
                     mostrarProducto(producto);
                 } catch (error) {
+                    alert(`${error.message}`);
                     console.error(`Error al obtener el producto:`, error.message);
-                    productoEncontrado.innerHTML = `<p>${error.message}</p>`
+                    //contenedorObjetoEncontrado.innerHTML = `<p>${error.message}</p>`
                 }
             });
 
@@ -100,27 +104,12 @@
                             <div class="contenedor-precio-producto">
                                 <p class="precio-producto">$${producto.precio.toFixed(2)}</p>
                             </div>
-                            <div class="contenedor-boton-producto">
-                                <button class="boton-eliminar-producto" data-id="${producto.id}">Eliminar</button>
-                            </div>
                         </div>
                     `;
-                productoEncontrado.innerHTML = carta;
+                contenedorObjetoEncontrado.innerHTML = carta;
 
                 let idProd = producto.id;
-                let botonEliminarProducto = document.querySelector(".boton-eliminar-producto");
-
-                botonEliminarProducto.addEventListener("click", function (event) {
-                    event.stopPropagation();
-                    let confirmacion = confirm("Está seguro/a que desea eliminar el producto?");
-
-                    if (confirmacion) eliminarProducto(idProd);
-                    else alert("Eliminación cancelada");    //  REEMPLAZAR POR TOAST
-                });
             }
-
-
-
 
 
         </script>

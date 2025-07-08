@@ -3,10 +3,11 @@ body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    box-sizing: border-box;/*
+    box-sizing: border-box;
+    /*
     background-color: rgb(245, 245, 245);
     color: rgb(0, 0, 0);*/
-        background-color: rgb(35, 35, 35);
+    background-color: rgb(35, 35, 35);
     color: rgb(255, 255, 255);
 }
 
@@ -20,11 +21,21 @@ header {
     justify-content: space-between;
     align-items: center;
     background-color: rgb(93, 109, 126);
-    padding: 10px 20px;
+    padding: 0px 20px;
     color: white;
     flex-wrap: wrap;
     border-bottom: 2px solid rgb(19, 19, 19);
+        flex-wrap: wrap;
+
 }
+
+
+.logo {
+    width: 210px;
+    object-fit: contain;
+    display: block;
+}
+
 
 header>a {
     text-decoration: none;
@@ -34,17 +45,24 @@ header>a {
 .link {
     background-color: rgb(93, 109, 126);
     color: rgb(19, 19, 19);
-    font-weight: bolder;
-    padding: 15px 20px;
-    font-size: 12px;
+    font-weight: bold;
+        padding: 30px 35px;
+margin: 0px 5px;
+    /*padding: 15px 20px;
+    font-size: 12px;*/
 }
-.link-referenciado {
-    background-color: rgb(19, 19, 19);
-    color: rgb(214, 219, 223);
+
+.link:hover {
+    transform: scale(1.03);
+    background-color: rgb(31, 26, 26);
+    color: rgb(232, 131, 37);
     font-weight: bolder;
-    padding: 15px 20px;
-    font-size: 12px;
+    padding: 34px;
 }
+
+
+
+
 
 footer {
     background-color: rgb(93, 109, 126);
@@ -59,12 +77,12 @@ footer .seccion-alumnos {
     padding: 10px 0;
 }
 
-footer .seccion-alumnos  h1{
-   font-size: 1.5rem;
-   margin: 5px ;
+footer .seccion-alumnos h1 {
+    font-size: 1.5rem;
+    margin: 5px;
 }
 
-footer .seccion-alumnos  h2{
+footer .seccion-alumnos h2 {
     font-size: 1.5rem;
     margin: 0;
 }
@@ -74,48 +92,48 @@ footer .seccion-alumnos  h2{
     padding: 10px 0;
 }
 
-.cargar-producto{
+.cargar-producto {
     max-width: 400px;
     margin: 1rem auto;
     padding: 0.5rem;
-    border : 2px solid #ccc;
+    border: 2px solid #ccc;
     border-radius: 5px;
     background-color: #f9f9f9;
-    
+
 }
 
-.formulario-alta-header{
+.formulario-alta-header {
     text-align: center;
     margin-bottom: 1.5rem;
 }
 
-.formulario-alta-header h3{
+.formulario-alta-header h3 {
     margin: 0;
     font-size: 1.5rem;
-    color:  #00d1ff;
+    color: #00d1ff;
 }
 
-.formulario-alta{
+.formulario-alta {
     display: flex;
     flex-direction: column;
-    gap:1rem;
+    gap: 1rem;
     background-color: #ffffff10;
-    padding: 2rem ;
+    padding: 2rem;
     border-radius: 12px;
     max-width: 400px;
     margin: auto;
     margin-bottom: 50px;
-    
+
 }
 
-.formulario-alta label{
+.formulario-alta label {
     font-weight: bold;
     margin-bottom: 0.3rem;
     display: block;
 }
+
 .formulario-alta input[type="text"],
-.formulario-alta input[type="number"]
- {
+.formulario-alta input[type="number"] {
     width: 100%;
     padding: 0.4rem;
     border-radius: 4px;
@@ -135,55 +153,56 @@ footer .seccion-alumnos  h2{
 
 
 /*form1*/
-.contenedor-producto{
+.contenedor-producto {
     display: flex;
     flex-direction: column;
     align-items: center;
-    
+
 }
-.form-consulta{
+
+.form-consulta {
     max-width: 300px;
     margin: 1rem auto;
     padding: 1rem;
-    border : 2px solid #ccc;
+    border: 2px solid #ccc;
     border-radius: 5px;
     background-color: #f9f9f9;
     display: flex;
     flex-direction: column;
-    gap:1rem;
+    gap: 1rem;
 }
 
-.form-consulta label{
+.form-consulta label {
     font-weight: bold;
     margin-bottom: 0.3rem;
 }
 
-.form-consulta  input[type="number"]{
+.form-consulta input[type="number"] {
     padding: 0.4rem;
     border: 1px solid #aaa;
     border-radius: 4px;
 }
 
-.boton-consultar{
+.boton-consultar {
     background-color: #2196f3;
-    color:  white;
-    border :none;
+    color: white;
+    border: none;
     padding: 0.6rem 1rem;
     cursor: pointer;
 }
 
-.boton-consultar hover{
+.boton-consultar hover {
     background-color: #1976d2;
 }
 
 .form-alta-campo input[type="checkbox"] {
-  transform: scale(1.2);
-  margin-top: 0.4rem;
+    transform: scale(1.2);
+    margin-top: 0.4rem;
 }
 
 .form-alta-botones {
     display: flex;
-    gap:0.5rem;
+    gap: 0.5rem;
     justify-content: space-between;
 }
 
@@ -214,21 +233,23 @@ footer .seccion-alumnos  h2{
 }
 
 .boton-cancelar:hover {
-  background-color: #d32f2f;
+    background-color: #d32f2f;
 }
+
 /*form2*/
-.form-editar-producto{
+.form-editar-producto {
     max-width: 300px;
     margin: 1rem auto;
     padding: 1rem;
-    border : 2px solid #ccc;
+    border: 2px solid #ccc;
     border-radius: 5px;
     background-color: #f9f9f9;
     display: flex;
     flex-direction: row;
-    gap:1rem;
+    gap: 1rem;
 }
-.card-editar{
+
+.card-editar {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -237,18 +258,18 @@ footer .seccion-alumnos  h2{
     background-color: #f9f9f9;
 }
 
-.card-editar-imagen img{
+.card-editar-imagen img {
     max-width: 100%;
     border-radius: 4px;
 }
 
-.card-editar-datos{
+.card-editar-datos {
     width: 100%;
     margin-top: 1rem;
 
 }
 
-.card-editar-datos label{
+.card-editar-datos label {
     display: block;
     margin-bottom: 0.5rem;
     font-weight: bold;
@@ -263,10 +284,10 @@ footer .seccion-alumnos  h2{
 
 }
 
-.checkbox-label{
+.checkbox-label {
     display: flex;
     align-items: center;
-    gap:0.5rem;
+    gap: 0.5rem;
 }
 
 
@@ -439,7 +460,7 @@ footer .seccion-alumnos  h2{
     padding-top: 15px;
     gap: 10px;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
 }
 
 .boton-estado-actividad,
@@ -455,6 +476,13 @@ footer .seccion-alumnos  h2{
     text-align: center;
     line-height: 30px;
 }
+
+.boton-estado-actividad {
+    background-color: rgb(4, 130, 16);
+    border: 1px solid black;
+}
+
+
 
 .boton-agregar-producto {
     background-color: rgb(4, 130, 16);
@@ -480,42 +508,76 @@ footer .seccion-alumnos  h2{
 
 
 
-#contenedor-get {
-
-    width: 800px;
-    min-height: 800px;
+.formulario-obtener-producto {
+    max-width: 500px;
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 30px;
-    border: 2px solid rgb(57, 248, 255);
-
+    background-color: rgb(0, 0, 0);
+    border: 2px solid rgb(255, 146, 57);
+    border-radius: 5px;
+    gap: 1rem;
+    padding: 2rem;
+    margin: auto;
+    margin-bottom: 50px;
 }
 
+.formulario-obtener-producto label {
+    font-weight: bold;
+    margin-bottom: 0.3rem;
+    display: block;
+}
 
-
-
-#formulario-obtener-producto {
-    border: 2px solid rgb(222, 57, 255);
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
+.formulario-obtener-producto input[type="number"] {
     width: 100%;
+    padding: 5px;
+    color: #333;
+    font-size: 1.2rem;
+    font-weight: bold;
+
+    border: 1px solid #f8bfbf;
+    margin-bottom: 8px;
+    text-align: center;
 }
 
-#contenedor-objeto-encontrado {
-    border-bottom: 2px solid rgb(0, 209, 216);
-}
-
-
-#producto-encontrado {
-    border-bottom: 2px solid rgb(216, 202, 0);
-    background-color: brown;
+.formulario-obtener-producto input:focus {
+    outline: none;
+    border-color: rgb(255, 146, 57);
+    font-weight: bolder;
 
 }
 
+.formulario-obtener-producto input[type="submit"] {
+    width: 100%;
+    padding: 5px;
+    background-color: rgb(252, 201, 159);
+    color: #333;
+    font-size: 1rem;
+    font-weight: bolder;
+    border: 1px solid rgb(243, 134, 44);
+}
 
+.formulario-obtener-producto input[type="submit"]:hover {
+    background-color: rgb(243, 134, 44);
+    border: 1px solid #f8bfbf;
 
+}
 
+.header-formulario {
+    margin-top: 45px;
+    margin-bottom: 35px;
+    text-align: center;
+}
 
+.contenedor-objeto-encontrado {
+    max-width: 300px;
+    border: 2px solid #ccc;
+    background-color: #f9f9f9;
+    border: 2px solid rgb(216, 86, 0);
+    margin: 1rem auto;
+    padding: 1rem;
+    gap: 1rem;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
