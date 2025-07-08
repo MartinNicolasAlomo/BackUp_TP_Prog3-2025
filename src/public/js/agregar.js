@@ -8,7 +8,7 @@ const formularioProducto = document.getElementById("formulario-producto");
 formularioProducto.addEventListener("submit", altaProducto);
 
 function validarDatos(data){
-    if(!data.codigo ||!data.nombre || !data.precio || !data.categorias ){
+    if(!data.nombre || !data.precio || !data.categorias ){
         return "Todos los campos son obligatorios";
     }
     if(data.activo==="on"){

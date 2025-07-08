@@ -122,6 +122,8 @@ async function actualizarProducto(){
     else{
         alert("error actualizando producto")
     }
+
+    window.location.href = "/dashboard"
 }
 
 
@@ -184,7 +186,7 @@ async function consultarIdProducto(idProducto) {
             const error = await response.json();
             return {
                 success: false,
-                message: error.message || `Error ${response.status}`
+                message: error.error || `Error ${response.status}`
             };
         }
     } catch (error) {

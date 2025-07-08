@@ -86,7 +86,7 @@ export const removeProduct = async (req, res) => {
 export const postProducto=async(req, res) => {
     console.log("POST /altaProducto Body:", req.body);
     let {codigo,nombre,precio,img,categorias,activo} = req.body;
-     if (!codigo || !nombre || !precio) {
+     if ( !nombre || !precio) {
         return res.status(400).json({
             success: false,
             message: "Faltan campos obligatorios: código, nombre o precio"
