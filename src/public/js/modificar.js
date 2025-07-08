@@ -154,7 +154,7 @@ async function enviarProductosActualizado(dataProducto){
     } catch (error) {
         return{
                 success : false,
-                message : "Error al enviar la solicitud"
+                message : error.message
             };
     }
 }

@@ -65,7 +65,7 @@ async function enviarProducto(datos) {
             let error = await response.json();
             return {
                 success : false,
-                message : resul.message
+                message : error.message
             };
         }
     } catch (error) {

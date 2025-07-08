@@ -34,3 +34,17 @@ export const vistaEliminar = (req, res) => {
         about: "Eliminar un producto por ID"
     });
 };
+
+export const vistaAgregar = (req, res) => {
+    res.render("agregar", {
+        title: "Crear producto",
+        about: ""
+    });
+};
+
+export const vistaModificar = (req, res) => {
+     res.render("modificar", {
+        title: "Modificar producto",
+        about: ""
+    });
+};
