@@ -1,16 +1,27 @@
-<!DOCTYPE html>
-<html lang="en">
+<%- include("partials/head.ejs") %>
+<%- include("partials/nav.ejs") %>
+        <hr>
+        <h1><%= about %></h1>
+        <hr>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../public/css/styles.css">
-    <title>Document</title>
-</head>
+           
+        <main>
+        <hr>
+        <h1>Listado de productos</h1>
+        <hr>
 
-<body>
-    <h1>Dashboard</h1>
-    <p>Este es una pagina renderizada con EJS ssadasdsadsad</p>
-</body>
+        <section class="seccion-productos">
+            <div class="contenedor-productos">
+                <section class="seccion-peliculas">
+                    <h3 class="titulo-peliculas">Películas</h3>
+                    <div class="contenedor-peliculas"></div>
+                </section>
+                <section class="seccion-series">
+                    <h3 class="titulo-series">Series</h3>
+                    <div class="contenedor-series"></div>
+                </section>
+            </div>
+        </section>
+    </main>
 
-</html>
+<%- include("partials/footer.ejs") %>

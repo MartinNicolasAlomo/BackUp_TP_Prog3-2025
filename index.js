@@ -2,7 +2,7 @@
 import express from "express";
 import environments from "./src/api/config/environments.js";
 import cors from "cors";
-import { productRoutes } from "./src/api/routes/index.js";
+import { productRoutes, viewRoutes } from "./src/api/routes/index.js";
 import { loggerURL } from "./src/api/middlewares/middlewares.js";
 import { __dirname, join } from "./src/api/utils/index.js";
 
@@ -32,35 +32,16 @@ app.use(loggerURL);
 
 
 // MIDDLEWARES DE RUTAS
-app.get("/", (req, res) => { 
+app.get("/", (req, res) => {
     res.send("Hola mundo");
 });
 
-app.get("/dashboard", (req,res)=>{
-    res.render("index");
-});
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+// RUTAS DE PRODUCTOS DE LA API REST
 app.use("/api/products", productRoutes);
 
 
+// RUTAS LAS VISTAS EJS
+app.use("/dashboard", viewRoutes);
 
 
 

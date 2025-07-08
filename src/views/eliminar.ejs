@@ -1,0 +1,35 @@
+<%- include("partials/head.ejs") %>
+<%- include("partials/nav.ejs") %>
+        <hr>
+        <h1><%= title %></h1>
+        <p><%= about %></p>
+        <hr>
+
+        
+    <main class="pantalla-eliminar">
+        <hr>
+        <h1>Listado de productos</h1>
+        <hr>
+
+        <section id="contenedor-get">
+            <h2>Ingrese el ID del producto a Eliminar</h2>
+
+            <form id="formulario-obtener-producto">
+                <label for="idProd">Id producto</label>
+                <input type="number" name="idProd" id="idProd" required>
+
+                <input type="submit" value="Consultar producto">
+            </form>
+            <!-- <div id="productos-container" class="crudForm-container">-->
+            <!-- </div>-->
+        </section>
+
+        <section>
+            <div id="contenedor-objeto-encontrado">
+                <ul id="producto-encontrado">
+                </ul>
+            </div>
+        </section>
+    </main>
+
+<%- include("partials/footer.ejs") %>
