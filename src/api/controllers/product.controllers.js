@@ -83,19 +83,44 @@ export const removeProduct = async (req, res) => {
 }
 
 
-export const postProducto=(req, res) => {
+export const postProducto=async(req, res) => {
     console.log("POST /altaProducto Body:", req.body);
     let {codigo,nombre,precio,img,categorias,activo} = req.body;
-    Products.insertarProducto(codigo,nombre,precio,img,categorias,activo);
-    try {
-        res.status(201).json({
-            success: true,
-            message : "Producto agregado correctamente"
+     if (!codigo || !nombre || !precio) {
+        return res.status(400).json({
+            success: false,
+            message: "Faltan campos obligatorios: código, nombre o precio"
         });
+    }
+    
+    try {
+        const [result] = await Products.insertarProducto(codigo, nombre, precio, img, categorias, activo);
+
+        if (result.affectedRows === 1) {
+            return res.status(201).json({
+                success: true,
+                message: "Producto agregado correctamente",
+            });
+        } else {
+            return res.status(500).json({
+                success: false,
+                message: "No se insertó ninguna fila"
+            });
+        }
+
     } catch (error) {
-        console.error("Error creando producto", error);
+        console.error("Error creando producto:", error);
+
+        if (error.code === "ER_DUP_ENTRY") {
+            return res.status(409).json({
+                success: false,
+                message: "Ya existe un producto con ese código"
+            });
+        }
+
         res.status(500).json({
-            message: "Error al crear producto"
+            success: false,
+            message: "Error interno al crear el producto"
         });
     }
 }
@@ -104,11 +129,17 @@ export const putProducto = async(req,res)=>{
     console.log("PUT - Body",req.body);
     const { nombre, precio, img, categoria, activo,codigo } = req.body;
     try {
-        await Products.actualizarProducto(nombre,precio,img,categoria,activo,codigo);
-         res.status(200).json({
-                success: true,
-                message : "Producto actualizado"
-            })
+        const result = await Products.actualizarProducto(nombre, precio, img, categoria, activo, codigo);
+        if (result[0].affectedRows === 0) {
+            return res.status(404).json({
+                success: false,
+                message: "No se encontró el producto para actualizar"
+            });
+        }
+        res.status(200).json({
+            success: true,
+            message: "Producto actualizado correctamente"
+        });
     } catch (error) {
         console.error("errr",error);
         res.status(500).json({
