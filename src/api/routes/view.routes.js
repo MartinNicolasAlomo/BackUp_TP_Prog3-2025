@@ -3,11 +3,23 @@ import Products from "../models/product.models.js";
 
 const router = Router();
 
-router.get("/", (req, res) => {
-    res.render("index", {
-        title: "Inicio Dashboard",
-        about: "Listado de Productos"
-    });
+router.get("/", async (req, res) => {
+    try {
+        const respuestaProductos = await Products.selectAllProducts();
+
+
+        res.render("index", {
+            title: "Inicio Dashboard",
+            products: respuestaProductos[0]
+        });
+
+    } catch (error) {
+        console.error("Error obteniendo la información", error.message);
+        res.status(500).json({
+            error: "Error interno al obtener la infromacion"
+        });
+    }
+
 });
 
 router.get("/consultar", (req, res) => {
