@@ -83,12 +83,16 @@
                 if (!idProd) {
                     throw new Error(`Error en el envio de datos del formulario`)
                 }
+                console.log("pase el idprod");
 
                 let response = await fetch(`${urlProducts}products/${idProd}`);
+                console.log("pase el fetch");
+
                 if (!response.ok) {
                     throw new Error(`Error ${response.status}: ${response.statusText}`)
                 }
 
+                
                 let datos = await response.json();
                 console.log(datos);
                 if (!datos.payload || datos.payload.lenght === 0) {
@@ -144,7 +148,6 @@
 
         async function eliminarProducto(id) {
             try {
-                //let response = await fetch(`http://localhost:3000/products/${id}`,
                 let response = await fetch(`${urlProducts}products/${id}`, {
                     method: `DELETE`
                 });

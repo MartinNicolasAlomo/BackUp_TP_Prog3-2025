@@ -65,8 +65,6 @@
                 let respuesta = await fetch(`${urlProducts}products`);
                 let datos = await respuesta.json();
 
-                /*console.log(datos);
-                console.table(datos.payload);*/
                 mostrarProductos(datos);
             } catch (error) {
                 console.error("Error", error);

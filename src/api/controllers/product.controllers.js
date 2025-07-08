@@ -46,6 +46,10 @@ export const getProductByID = async (req, res) => {
     }
 };
 
+
+
+
+
 export const removeProduct = async (req, res) => {
     // validate ID
     try {
