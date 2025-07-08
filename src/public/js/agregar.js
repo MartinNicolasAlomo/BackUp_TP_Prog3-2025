@@ -41,6 +41,7 @@ async function altaProducto(events) {
     else{
         alert("Error : " +resulatado.message);
     }
+     window.location.href = "/dashboard"
 }
 
 async function enviarProducto(datos) {
