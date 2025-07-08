@@ -56,7 +56,7 @@ export const removeProduct = async (req, res) => {
         let { id } = req.params;
 
         if (!id) {
-            return res.status(400).jdon({
+            return res.status(400).json({
                 message: "Se requiere un ID para eliminar un producto"
             })
         }
