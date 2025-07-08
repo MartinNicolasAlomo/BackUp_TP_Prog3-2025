@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>TP Integrador 334</title>
+
+    <!--  Estilos CSS -->
+    <link rel="stylesheet" href="../src/public/css/styles.css">
+
+    <!--  Logica JavaScript  -->
+    <!--   <script defer src="js/productos.js"></script>  -->
+
+    <!--  Favicon  -->
+    <link rel="shortcut icon" href="../src/public/img/favicon.ico" type="image/x-icon">
+
+</head>
+
+
+<body>
+
+    <header>
+        <a href="../src/public/img/logo.png" target="_blank">
+            <img src="../src/public/img/logo.png" alt="MediaVerse_Logo" class="logo">
+        </a>
+
+        <nav class="listado-nav">
+            <a class="link-referenciado" href="#">Dashboard</a> <!-- GET -->
+            <a class="link" href="get.html">Buscar Producto</a> <!-- Get : id -->
+            <a class="link" href="post.html">Crear Producto</a> <!-- POST -->
+            <a class="link" href="put.html">Modificar Producto</a> <!-- PUT -->
+            <a class="link" href="delete.html">Eliminar Producto</a> <!-- DELETE -->
+        </nav>
+    </header>
+
+
+    <main>
+        <hr>
+        <h1>Listado de productos</h1>
+        <hr>
+
+        <section class="seccion-productos">
+            <div class="contenedor-productos">
+                <section class="seccion-peliculas">
+                    <h3 class="titulo-peliculas">Películas</h3>
+                    <div class="contenedor-peliculas"></div>
+                </section>
+                <section class="seccion-series">
+                    <h3 class="titulo-series">Series</h3>
+                    <div class="contenedor-series"></div>
+                </section>
+            </div>
+        </section>
+    </main>
+
+    <!-- Por tema legibilidad, incorporamos aca el JavaScript -->
+    <script>
+        const urlProducts = "http://localhost:3000/api/";
+        let listaProductos = [];
+
+        async function obtenerDatosProductos() {
+            try {
+                let respuesta = await fetch(`${urlProducts}products`);
+                let datos = await respuesta.json();
+
+                /*console.log(datos);
+                console.table(datos.payload);*/
+                mostrarProductos(datos);
+            } catch (error) {
+                console.error("Error", error);
+            }
+        }
+
+        function mostrarProductos(array) {
+            listaProductos = array.payload; // Guardamos el array de productos
+
+            let contenedorPeliculas = document.querySelector(".contenedor-peliculas");
+            let contenedorSeries = document.querySelector(".contenedor-series");
+            let htmlPeliculas = "";
+            let htmlSeries = "";
+
+            listaProductos.forEach(producto => {
+                let estadoActividad = producto.activo === 1 ? "Estado: Activo" : "Estado: Inactivo"
+                let carta = `
+                    <div class="carta-producto">
+                        <div class="contenedor-imagen-producto">
+                            <img class="imagen-producto" src="${producto.imagen}" alt="${producto.nombre}">
+                        </div>
+                        <div class="contenedor-nombre-producto">
+                            <h3 class="nombre-producto">${producto.nombre}</h3>
+                        </div>
+                        <div class="contenedor-id-producto">
+                                <p class="id-producto">ID: ${producto.id}</p>
+                            </div>
+                        <div class="contenedor-precio-producto">
+                            <p class="precio-producto">$${producto.precio.toFixed(2)}</p>
+                        </div>
+                        <div class="contenedor-boton-producto">
+                            <button class="boton-estado-actividad" data-id="${producto.id}">${estadoActividad}</button>
+                        </div>
+                    </div>
+                `;
+                if (producto.categoria === "Película") htmlPeliculas += carta;
+                else if (producto.categoria === "Serie") htmlSeries += carta;
+            });
+
+            contenedorPeliculas.innerHTML = htmlPeliculas;
+            contenedorSeries.innerHTML = htmlSeries;
+
+            document.querySelectorAll(".boton-agregar-producto").forEach(boton => {
+                boton.addEventListener("click", function () {
+                    const id = parseInt(this.dataset.id);
+                    agregarAlCarrito(id)
+                });
+            });
+
+            /* document.querySelectorAll(".boton-eliminar-producto").forEach(boton => {
+                 boton.addEventListener("click", function () {
+                     const id = parseInt(this.dataset.id);
+                     eliminarDelCarrito(id);
+                 });
+             });*/
+            document.querySelectorAll(".imagen-producto").forEach(imagen => {
+                imagen.addEventListener("click", function () {
+                    window.open(imagen.src, '_blank');
+                });
+            });
+        }
+        obtenerDatosProductos();
+
+
+    </script>
+</body>
+
+</html>

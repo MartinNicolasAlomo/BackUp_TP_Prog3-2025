@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>TP Integrador 334</title>
+
+    <!--  Estilos CSS -->
+    <link rel="stylesheet" href="../FRONT__BORRAR/styles.css">
+    <!--    <link rel='stylesheet' href='https://cdn.jsdelivr.net/gh/kognise/water.css@latest/dist/dark.css'>  -->
+
+    <!--  Logica JavaScript  -->
+    <!--   <script defer src="js/productos.js"></script>  -->
+
+    <!--  Favicon  -->
+    <link rel="shortcut icon" href="../assets/img/favicon.ico" type="image/x-icon">
+
+
+
+</head>
+
+
+<body>
+    <header>
+        <a href="assets/img/logo.png" target="_blank">
+            <img src="../assets/img/logo.png" alt="MediaVerse_Logo" class="logo">
+        </a>
+
+        <nav class="listado-nav">
+            <a class="link" href="index.html">Dashboard</a> <!-- GET -->
+            <a class="link" href="get.html">Buscar Producto</a> <!-- Get : id -->
+            <a class="link" href="post.html">Crear Producto</a> <!-- POST -->
+            <a class="link" href="put.html">Modificar Producto</a> <!-- PUT -->
+            <a class="link-referenciado" href="delete.html">Eliminar Producto</a> <!-- DELETE delete.html -->
+        </nav>
+
+    </header>
+
+
+    <main id="contenedor-get">
+
+        <hr>
+        <h1>Listado de productos</h1>
+        <hr>
+
+        <div id="productos-container" class="crudForm-container">
+            <h2>Consultar producto</h2>
+
+            <form id="getProduct-form">
+                <label for="idProd">Id producto</label>
+                <input type="number" name="idProd" id="idProd" required>
+
+                <input type="submit" value="Consultar producto">
+            </form>
+            
+        </div>
+
+        <div id="getId-container">
+            <ul id="getId-list">
+            </ul>
+        </div>
+    </main>
+
+
+
+
+
+
+    <!-- Por tema legibilidad, incorporamos aca el JavaScript -->
+    <script>
+        let getProduct_form = document.getElementById("getProduct-form");
+        let getId_list = document.getElementById("getId-list");
+
+        getProduct_form.addEventListener("submit", async (event) => {
+            event.preventDefault();
+
+            try {
+                getId_list.innerHTML = "<p>Cargando producto</p>"   //  Muestra estado de carga
+
+                //  Extraemos la info de los campos del formulario
+                let formData = new FormData(event.target);  //  Objeto JS especifico de info de formularios HTML 
+                let data = Object.fromEntries(formData.entries());  //  Transformamos el objeto FormData en nun objeto JS normal
+                console.log(data);
+
+                //Ahora que obtenemos el objeto con el campo de idProf, vamos a guardarlo en una variable
+                let idProd = data.idProd.trim();
+                console.log(idProd);
+
+                if (!idProd) {
+                    throw new Error(`Error en el envio de datos del formulario`)
+                }
+
+                let response = await fetch(`http://localhost:3000/products/${idProd}`);
+
+                if (!response.ok) {
+                    throw new Error(`Error ${response.status}: ${response.statusText}`)
+                }
+
+                let datos = await response.json();
+                console.log(datos);
+
+                if (!datos.payload || datos.payload.lenght === 0) {
+                    throw new Error(`No se encontró el producto solicitado.`)
+                }
+
+                //  Guardamos nuestro producto en una variable
+                let producto = datos.payload[0];
+                console.log(producto);
+                console.log("LLEGE ACA");
+
+                mostrarProducto(producto);
+
+            } catch (error) {
+                console.log("NO SE CONSIGUE EL PROD                    ");
+                console.error(`Error al obtener el producto:`, error.message);
+                getId_list.innerHTML = `<p>${error.message}</p>`
+            }
+        });
+
+
+        function mostrarProducto(producto) {
+            let carta = `
+                        <div class="carta-producto">
+                            <div class="contenedor-imagen-producto">
+                                <img class="imagen-producto" src="${producto.imagen}" alt="${producto.nombre}">
+                            </div>
+                            <div class="contenedor-nombre-producto">
+                                <h3 class="nombre-producto">${producto.nombre}</h3>
+                            </div>
+                            <div class="contenedor-id-producto">
+                                <p class="id-producto">$${producto.id}6666</p>
+                            </div>
+                            <div class="contenedor-precio-producto">
+                                <p class="precio-producto">$${producto.precio.toFixed(2)}</p>
+                            </div>
+                            <div class="contenedor-boton-producto">
+                                <button class="boton-eliminar-producto" data-id="${producto.id}">Eliminar</button>
+                            </div>
+                        </div>
+                    `;
+            getId_list.innerHTML = carta;
+
+            let idProd = producto.id;
+            let botonEliminarProducto = document.querySelector(".boton-eliminar-producto");
+            botonEliminarProducto.addEventListener("click", function (event) {
+                event.stopPropagation();
+                let confirmacion = confirm("Está seguro/a que desea eliminar el producto?");
+                if (confirmacion) {
+                    console.log("LAMADA     -- A LA FUNCION ELIMINAR");
+
+                    eliminarProducto(idProd);
+                }
+                else {
+                    console.log("CANCELADOSSSS");
+
+                    alert("Eliminación cancelada");    //  REEMPLAZAR POR TOAST
+                }
+            });
+        }
+
+
+        async function eliminarProducto(id) {
+            try {
+                let response = await fetch(`http://localhost:3000/products/${id}`, {
+                    method: "DELETE"
+                });
+
+                let result = await response.json();
+
+                if (response.ok) {
+                    alert(result.message);
+                    getId_list.innerHTML = "";
+                    return true;
+                }
+                else {
+                    console.error("Error:", result.message);
+                    alert("Ocurrio un error al eliminar un producto");
+                    return false;
+                }
+
+            } catch (error) {
+                console.error("Error en la solicitud DELETE", error);
+                alert("Ocurrio un error al eliminar un producto");
+                return false;
+            }
+        }
+
+
+    </script>
+
+
+</body>
+
+</html>
