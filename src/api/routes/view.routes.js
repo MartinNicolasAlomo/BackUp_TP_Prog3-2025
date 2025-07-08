@@ -36,5 +36,19 @@ router.get("/eliminar", (req, res) => {
     });
 });
 
+router.get("/agregar", (req, res) => {
+    res.render("agregar", {
+        title: "Eliminar producto",
+        about: "Eliminar un producto por ID"
+    });
+});
+
+
+router.get("/modificar", (req, res) => {
+    res.render("modificar", {
+        title: "Eliminar producto",
+        about: "Eliminar un producto por ID"
+    });
+});
 
 export default router;

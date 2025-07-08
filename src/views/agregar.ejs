@@ -1,0 +1,51 @@
+<%- include("partials/head.ejs") %>
+<%- include("partials/nav.ejs") %>
+        <hr>
+        <h1><%= title %></h1>
+        <p><%= about %></p>
+        <hr>
+
+        
+        <section class="seccion-productos">
+            <div class="formulario-alta-header">
+                <h3>Alta de producto</h3>
+                <span>Completa los siguientes datos:</span>
+            </div>
+            <form class="formulario-alta" id="formulario-producto">
+                <div class="form-alta-campo">
+                    <label for="codigo">Código:</label>
+                    <input type="text" name="codigo" id="codigo" required>
+                </div>
+                <div class="form-alta-campo">
+                    <label for="nombre">Nombre:</label>
+                    <input type="text" name="nombre" id="nombre" required>
+                </div>
+                <div class="form-alta-campo">
+                    <label for="precio">Precio:</label>
+                    <input type="number" name="precio" id="precio" required>
+                </div>
+                <div class="form-alta-campo">
+                    <label for="img">Imagen URL:</label>
+                    <input type="text" name="img" id="img">
+                </div>
+                <div class="form-alta-campo">
+                    <label for="categorias">Categoría:</label>
+                    <input type="text" name="categorias" id="categorias">
+                </div>
+                <div class="form-alta-campo">
+                    <label for="activo">Activo:</label>
+                    <input type="checkbox" name="activo" id="activo">
+                </div>
+                <div class="form-alta-botones">
+                    <button type="submit" class="boton-confirmar">Confirmar</button>
+                    <button type="button" class="boton-cancelar">Cancelar</button>
+                </div>
+            </form>
+
+            <div class="producto" id="producto-alta">
+                
+            </div>
+        </section>
+
+
+<%- include("partials/footer.ejs") %>

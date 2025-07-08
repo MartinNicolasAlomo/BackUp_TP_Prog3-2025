@@ -1,0 +1,27 @@
+<%- include("partials/head.ejs") %>
+<%- include("partials/nav.ejs") %>
+        <hr>
+        <h1><%= title %></h1>
+        <p><%= about %></p>
+        <hr>
+
+        
+        <section>
+            <div class="contenedor-producto">
+                <h2>Consultar procuto</h2>
+                <form id="formulario-baja" class="form-consulta">
+                    <label for="idProd">Id producto</label>
+                    <input type="number" name="idProd" id="idProd" required>
+
+                    <button type="submit" class="boton-consultar">Consultar Producto</button>
+                </form>
+        
+
+                <form id="formulario-editar-producto" class="form-editar-producto">
+
+                </form>
+            </div>    
+        </section>
+
+
+<%- include("partials/footer.ejs") %>
