@@ -28,10 +28,20 @@ const actualizarProducto = async(nombre,precio,img,categorias,activo,id) =>{
     let cadSql = "update productos set nombre = ?,precio = ?,imagen =? ,categoria = ? ,activo = ? where id = ?";
     return await connection.query(cadSql,[nombre,precio,img,categorias,activo,id]);
 }
+
+const actualizarEstadoActivo = async (id, activo) => {
+    const sql = "UPDATE productos SET activo = ? WHERE id = ?";
+    return await connection.query(sql, [activo, id]);
+};
+
+
+
+
 export default {
     selectAllProducts,
     selectProductByID,
     deleteProduct,
     actualizarProducto,
-    insertarProducto
+    insertarProducto,
+    actualizarEstadoActivo
 }

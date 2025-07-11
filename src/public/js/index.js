@@ -24,8 +24,11 @@ function mostrarProductos(array) {
 
     listaProductos.forEach(producto => {
         let estadoActividad = producto.activo === 1 ? "Estado: Activo" : "Estado: Inactivo"
+        let claseCarta = producto.activo === 1 ? "activo" : "inactivo";
+        let claseBoton = producto.activo === 1 ? "activo" : "inactivo";
+
         let carta = `
-                    <div class="carta-producto">
+                    <div class="carta-producto ${claseCarta}">
                         <div class="contenedor-imagen-producto">
                             <img class="imagen-producto" src="${producto.imagen}" alt="${producto.nombre}">
                         </div>
@@ -39,7 +42,7 @@ function mostrarProductos(array) {
                             <p class="precio-producto">$${producto.precio.toFixed(2)}</p>
                         </div>
                         <div class="contenedor-boton-producto">
-                            <button class="boton-estado-actividad" data-id="${producto.id}">${estadoActividad}</button>
+                            <button class="boton-estado-actividad ${claseBoton}" data-id="${producto.id}">${estadoActividad}</button>
                         </div>
                     </div>
                 `;

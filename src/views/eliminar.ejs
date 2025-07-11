@@ -2,11 +2,7 @@
     <%- include("partials/nav.ejs") %>
 
         <main class="pantalla-eliminar">
-            <hr>
-            <h1>
-                <%= title %>
-            </h1>
-            <hr>
+
 
             <section>
                 <div class="header-formulario">
@@ -70,6 +66,7 @@
                     mostrarProducto(producto);
 
                 } catch (error) {
+                    alert(`${error.message}`);
                     console.error(`Error al obtener el producto:`, error.message);
                     contenedorObjetoEncontrado.innerHTML = `<p>${error.message}</p>`
                 }
@@ -93,14 +90,15 @@
                             </div>
                             <div class="contenedor-boton-producto">
                                 <button class="boton-eliminar-producto" data-id="${producto.id}">Eliminar</button>
+                                <button class="boton-desactivar-producto" data-id="${producto.id}">Desactivar</button>
                             </div>
                         </div>
                     `;
                 contenedorObjetoEncontrado.innerHTML = carta;
 
                 let idProd = producto.id;
-                let botonEliminarProducto = document.querySelector(".boton-eliminar-producto");
 
+                let botonEliminarProducto = document.querySelector(".boton-eliminar-producto");
                 botonEliminarProducto.addEventListener("click", function (event) {
                     event.stopPropagation();
                     let confirmacion = confirm("Está seguro/a que desea eliminar el producto?");
@@ -108,6 +106,17 @@
                     if (confirmacion) eliminarProducto(idProd);
                     else alert("Eliminación cancelada");
                 });
+
+
+                let botonDesactivarProducto = document.querySelector(".boton-desactivar-producto");
+                botonDesactivarProducto.addEventListener("click", function (event) {
+                    event.stopPropagation();
+                    let confirmacion = confirm("Está seguro/a que desea desactivar el producto?");
+
+                    if (confirmacion) cambiarEstadoActivo(producto);
+                    else alert("Desactivación cancelada");
+                });
+
             }
 
             async function eliminarProducto(id) {
@@ -134,7 +143,39 @@
                     alert("Ocurrio un error al eliminar un producto");
                     return false;
                 }
+                window.location.href = "/dashboard"
             }
+
+
+
+            async function cambiarEstadoActivo(producto) {
+                try {
+                    let nuevoEstado = !producto.activo; // Invertimos el estado actual
+
+                    let response = await fetch(`${urlProducts}products/${producto.id}/activo`, {
+                        method: "PATCH",
+                        headers: {
+                            "Content-Type": "application/json"
+                        },
+                        body: JSON.stringify({ activo: nuevoEstado })
+                    });
+
+                    let result = await response.json();
+
+                    if (response.ok) {
+                        alert(result.message);
+                        contenedorObjetoEncontrado.innerHTML = "";
+                    } else {
+                        throw new Error(result.message);
+                    }
+
+                } catch (error) {
+                    console.error("Error al cambiar estado activo:", error);
+                    alert("Ocurrió un error al cambiar el estado del producto.");
+                }
+                window.location.href = "/dashboard"
+            }
+
 
         </script>
 

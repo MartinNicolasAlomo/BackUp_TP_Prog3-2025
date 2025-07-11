@@ -388,6 +388,15 @@ footer .seccion-alumnos h2 {
     justify-content: space-evenly;
 }
 
+
+.carta-producto.inactivo {
+    filter: grayscale(80%);
+    opacity: 0.8;;
+        border: 2px solid rgb(255, 0, 0);
+
+}
+
+
 .contenedor-imagen-producto {
     height: 250px;
 }
@@ -464,6 +473,7 @@ footer .seccion-alumnos h2 {
 }
 
 .boton-estado-actividad,
+.boton-desactivar-producto ,
 .boton-eliminar-producto {
     width: 140px;
     height: 35px;
@@ -482,10 +492,17 @@ footer .seccion-alumnos h2 {
     border: 1px solid black;
 }
 
+.boton-estado-actividad.inactivo {
+    background-color: rgb(130, 29, 4);
+    border: 1px solid black;
+}
 
 
-.boton-agregar-producto {
-    background-color: rgb(4, 130, 16);
+
+
+
+.boton-desactivar-producto {
+    background-color: rgb(97, 40, 230);
     border: 1px solid black;
 }
 
@@ -494,9 +511,9 @@ footer .seccion-alumnos h2 {
     border: 1px solid black;
 }
 
-.boton-agregar-producto:hover {
-    background-color: rgb(40, 180, 35);
-    border: 1px solid rgb(4, 130, 16);
+.boton-desactivar-producto:hover {
+    background-color: rgb(73, 34, 180);
+    border: 1px solid rgb(58, 22, 158);
     cursor: pointer;
 }
 
@@ -505,6 +522,9 @@ footer .seccion-alumnos h2 {
     border: 1px solid rgb(202, 23, 41);
     cursor: pointer;
 }
+
+
+
 
 
 

@@ -90,6 +90,8 @@
             });
 
             function mostrarProducto(producto) {
+                let estadoActividad = producto.activo === 1 ? "Estado: Activo" : "Estado: Inactivo"
+                let claseBoton = producto.activo === 1 ? "activo" : "inactivo";
                 let carta = `
                         <div class="carta-producto">
                             <div class="contenedor-imagen-producto">
@@ -103,6 +105,9 @@
                             </div>
                             <div class="contenedor-precio-producto">
                                 <p class="precio-producto">$${producto.precio.toFixed(2)}</p>
+                            </div>
+                            <div class="contenedor-boton-producto">
+                                <button class="boton-estado-actividad ${claseBoton}" data-id="${producto.id}">${estadoActividad}</button>
                             </div>
                         </div>
                     `;
